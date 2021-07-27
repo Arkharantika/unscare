@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\DataCovidController;
+use App\Http\Controllers\IsolasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,11 @@ Route::patch('/userdata/{id}', [UserDataController::class, 'update'])->name('upd
 Route::get('/user/claimcovidvaksin', [ClaimController::class, 'index']);
 Route::post('/user/claimcovid', [ClaimController::class, 'store'])->name('store');
 Route::patch('/user/claimcovid/{id}', [ClaimController::class, 'update'])->name('update');
+
+// -> Untuk Isolasi Mandiri
+Route::get('/user/isolasimandiri', [IsolasiController::class, 'index']);
+
+
 
 // +---------------------------------------------------------------------------------------+ //
 //                                   <<< Admin Role >>>

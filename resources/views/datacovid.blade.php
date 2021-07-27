@@ -48,8 +48,9 @@
 										<th>Nama Lengkap</th>
 										<th>File Hasil Test</th>
 										<th>Keterangan</th>
-										<th>Created at</th>
-										<th>Updated at</th>
+										<th>Sudah Sembuh ?</th>
+										<th>Tanggal</th>
+										<!-- <th>Updated at</th> -->
 									</tr>
 								</thead>
 								<tbody>
@@ -60,8 +61,9 @@
 										<td>{{$row->nama_lengkap}}</td>
 										<td><a href="{{url('/admin/downloadcovid/'.$row->id_user)}}" class="btn btn-success"><i class="bx bx-arrow-to-bottom" ></i> download gambar</a></td>
 										<td>{{$row->keterangan}}</td>
+										<td>{{$row->sembuh}}</td>
 										<td>{{$row->created_at}}</td>
-										<td>{{$row->updated_at}}</td>										
+										<td></td>										
 									</tr>
 								@endforeach
 								</tbody>

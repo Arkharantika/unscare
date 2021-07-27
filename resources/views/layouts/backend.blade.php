@@ -72,9 +72,9 @@
 					<ul>
 						<li> <a href="{{url('/user/claimcovidvaksin')}}"><i class="bx bx-right-arrow-alt"></i>Claim Covid / Vaksin</a>
 						</li>
-						<li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Registrasi Test / Vaksin</a>
+						<li> <a href="{{url('/user/isolasimandiri')}}"><i class="bx bx-right-arrow-alt"></i>Isolasi Mandiri</a>
 						</li>
-						<li> <a href="ecommerce-add-new-products.html"><i class="bx bx-right-arrow-alt"></i>Isolasi Mandiri</a>
+						<li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Registrasi Test / Vaksin</a>
 						</li>
 						<li> <a href="ecommerce-orders.html"><i class="bx bx-right-arrow-alt"></i>History Pribadi</a>
 						</li>

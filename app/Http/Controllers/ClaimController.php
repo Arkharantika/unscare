@@ -52,9 +52,10 @@ class ClaimController extends Controller
         $hasiltest->move($hasil_upload,$nama_gambar);
         
         ClaimCovid::create( 
-            ['id_user' => $complete->id_user,
+            ['id_user'         => $complete->id_user,
             'gambar_hasiltest' => $nama_gambar, 
-            'keterangan'    => $request->keterangan,
+            'keterangan'       => $request->keterangan,
+            'sembuh'           => 'belum'
        ]);
 
        return redirect('user/claimcovidvaksin');
@@ -92,23 +93,29 @@ class ClaimController extends Controller
     public function update(Request $request, $id)
     {
         $user = Auth::user();
-        $complete = UserData::where('id_user',$user->id)->get()->first();
+        $complete = ClaimCovid::where('id_user',$user->id)->get()->first();
 
-        $hasiltest = $request->file('file_hasil');
         
-        $nama_gambar = "foto_positif_".$complete->nim_nip.".".$hasiltest->getClientOriginalExtension();
-
-        $hasil_upload = 'folder_covid';
-        $hasiltest->move($hasil_upload,$nama_gambar);
-        
-        ClaimCovid::updateOrCreate(
-            ['id_user' => $complete->id_user],
-            ['gambar_hasiltest' => $nama_gambar, 
-             'keterangan'    => $request->keterangan
-            ]
-        );
-
+        ClaimCovid::where('id_user',$id)->update(
+                [
+                        'sembuh'=>'sudah'
+                    ]
+                );
+                
+                // // $hasiltest = $request->file('file_hasil');
+                
+                // // $nama_gambar = "foto_positif_".$complete->nim_nip.".".$hasiltest->getClientOriginalExtension();
+                
+                // // $hasil_upload = 'folder_covid';
+                // // $hasiltest->move($hasil_upload,$nama_gambar);
+                
+        // return $complete;
         return redirect('user/claimcovidvaksin');
+    }
+
+    public function update2(Request $request, $id)
+    {
+        return 0;
     }
 
     /**

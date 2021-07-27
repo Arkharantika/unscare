@@ -10,7 +10,7 @@
                     <br>
 						<div class="card">
 							<div class="card-body">
-                            <div class="text-center"><i class="bx bxs-user-circle text-dark font-50"></i><h4 class="form-label ">Isi Data Anda</h4>
+                            <div class="text-center"><i class="bx bxs-user-circle text-primary font-50"></i><h4 class="form-label ">Isi Data Anda</h4>
                                         <!-- <p>Silahkan Isi Data ID dan Password Anda<a href="authentication-signup.html"></a> -->
                                     </div>
                                     <div class="login-separater text-center mb-4"> 
