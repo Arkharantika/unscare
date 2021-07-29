@@ -37,7 +37,8 @@
     @if(($vaksin ?? '') == null)
     <div class="btn btn-warning "> Belum Vaksin Covid !  </div>
     @endif
-    
+
+
 
     <div class="ms-auto">
         <div class="btn-group">
@@ -55,71 +56,48 @@
 
 <h6 class="mb-0 text-uppercase">DataTable Example</h6>
 <hr/>
-<!--end breadcrumb-->
 
 <div class="row row-cols-1 row-cols-xl-2">
-    <div class="col d-flex">
-        <div class="card radius-10 w-100">
-            <div class="card-body">
-
-                @if(($data ?? '') == null)
-                <div class="text-center"><i class="bx bx-disc text-dark font-50"></i><h4 class="form-label ">Claim Positif Covid - 19</h4>
-                @endif
-                @if(($data->sembuh ?? '') == 'belum')
-                <div class="text-center"><i class="bx bx-disc text-dark font-50"></i><h4 class="form-label ">Claim Sembuh</h4>
-                @endif
-                @if(($data->sembuh ?? '') == 'sudah')
-                <div class="text-center"><i class="bx bx-disc text-dark font-50"></i><h4 class="form-label ">Claim Positif Covid - 19</h4>
-                @endif
-
+<div class="col d-flex">
+    <div class="card radius-10 w-100">
+        <div class="card-body">
+            <div class="text-center"><i class="bx bx-capsule text-dark font-50"></i><h4 class="form-label ">Claim Vaksin Covid</h4>
             </div>
             <div class="login-separater text-center mb-4"> 
                 <hr/>
             </div>
 
-            <form method="post" action="/user/claimcovid" enctype="multipart/form-data" >
-            @csrf
+            <form method="post" action="/user/claimvaksin/{{$user->id}}" enctype="multipart/form-data" >
+                @method('PATCH')
+                @csrf
+                <div class="mb-3">
+                    <label class="form-label">Dosis ke :</label>
+                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="1/2/3" name="dosis">
+                    <datalist id="datalistOptions">
+                        <option value="1">
+                        <option value="2">
+                        <option value="3">
+                        <option value="4">
+                        <option value="5">
+                    </datalist>
+                </div>
                 <div class="mb-3">
                     <label class="form-label">Keterangan :</label>
                     <textarea type="form-control" class="form-control" placeholder="" name="keterangan" id="keterangan"></textarea>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Foto Hasil Test Positif Covid :</label>
-                    <input type="file" class="form-control" id="file_hasil" name="file_hasil" data-toggle="custom-file-input" multiple>
+                    <label class="form-label">Link G-Drive Kartu Vaksin :</label>
+                    <textarea type="form-control" class="form-control" placeholder="" name="link" id="link"></textarea>
                 </div>
-                <br><br><br>
-
-                @if(($data ?? '') == null)
                 <div class="col-12">
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-danger btn-lg px-5"><i class="bx bx-sun"></i>Saya Positif Covid 19</button>
+                        <button type="submit" class="btn btn-success btn-lg px-5"><i class="bx bx-message-square-check"></i>Saya Sudah Vaksin !</button>
                     </div>
                 </div>
-                @endif
-                @if(($data->sembuh ?? '') == 'sudah')
-                <div class="col-12">
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-danger btn-lg px-5"><i class="bx bx-sun"></i>Saya Positif Covid 19</button>
-                    </div>
-                </div>
-                @endif
-
             </form>
 
-            @if(($data->id_user ?? '') != null)
-            <form method="post" action="/user/claimcovid/{{$data->id_user}}" enctype="multipart/form-data" >
-            @method('PATCH')
-            @csrf
-                @if(($data->sembuh ?? '') == 'belum')
-                <div class="col-12">
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-success btn-lg px-5"><i class="bx bx-sun"></i>Saya Sudah Sembuh !</button>
-                    </div>
-                </div>
-                @endif
-            @endif
-            </form>
         </div>
     </div>
+</div>
 </div>
 @endsection

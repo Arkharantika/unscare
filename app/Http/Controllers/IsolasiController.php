@@ -11,13 +11,27 @@ use App\Models\ClaimCovid;
 class IsolasiController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $complete = UserData::where('id_user',$user->id)->get()->first();
+        // $data = ClaimCovid::where('id_user',$user->id)->get()->last();
+
+        return view('isolasi',compact('user','complete'));
     }
 
     /**

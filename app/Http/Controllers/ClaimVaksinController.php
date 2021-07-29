@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Models\UserData;
+use App\Models\ClaimCovid;
+use App\Models\ClaimVaksin;
 
-class UserDataController extends Controller
+class ClaimVaksinController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,7 +27,12 @@ class UserDataController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $complete = UserData::where('id_user',$user->id)->get()->first();
+        $data = ClaimCovid::where('id_user',$user->id)->get()->last();
+        $vaksin = ClaimVaksin::where('id_user',$user->id)->get()->last();
+
+        return view('claimvaksin',compact('user','complete','data','vaksin'));
     }
 
     /**
@@ -79,24 +87,16 @@ class UserDataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ktp = $request->file('file_ktp');
-        
-        $nama_ktp = "foto_ktp_".$request->nim_nip.".".$ktp->getClientOriginalExtension();
+        $user = Auth::user();
+        $complete = ClaimCovid::where('id_user',$user->id)->get()->first();
 
-        $ktp_upload = 'folder_ktp';
-        $ktp->move($ktp_upload,$nama_ktp);
-        
-        UserData::updateOrCreate(
-            ['id_user' => $id],
-            ['nama_lengkap' => $request->nama_lengkap, 
-             'nim_nip'    => $request->nim_nip,
-             'no_telp'    => $request->no_telp,
-             'status'     => $request->option,
-             'gambar_ktp' => $nama_ktp,
-             'alamat'     => $request->alamat]
-        );
+        ClaimVaksin::updateOrCreate(['id_user' => $id],[
+            'dosis_ke' => $request->dosis,
+            'keterangan' => $request->keterangan,
+            'link'        => $request->link
+        ]);
 
-        return redirect()->route('home');
+        return redirect('user/claimvaksin');
     }
 
     /**

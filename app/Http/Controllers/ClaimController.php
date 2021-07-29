@@ -6,9 +6,20 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\UserData;
 use App\Models\ClaimCovid;
+use App\Models\ClaimVaksin;
 
 class ClaimController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +30,9 @@ class ClaimController extends Controller
         $user = Auth::user();
         $complete = UserData::where('id_user',$user->id)->get()->first();
         $data = ClaimCovid::where('id_user',$user->id)->get()->last();
+        $vaksin = ClaimVaksin::where('id_user',$user->id)->get()->last();
 
-        return view('claim',compact('user','complete','data'));
+        return view('claim',compact('user','complete','data','vaksin'));
     }
 
     /**
@@ -110,7 +122,7 @@ class ClaimController extends Controller
                 // // $hasiltest->move($hasil_upload,$nama_gambar);
                 
         // return $complete;
-        return redirect('user/claimcovidvaksin');
+        return redirect('user/claimcovid');
     }
 
     public function update2(Request $request, $id)
