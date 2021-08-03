@@ -40,6 +40,49 @@ body {
 a {
 	text-decoration: none
 }
+.regislog-bg {
+	background-color: #E8F5FF;
+	padding-right: 45px;
+	margin: auto;
+}
+.regislog-title {
+	text-align: right;
+	color: #333333;
+    text-align: right;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 80px;
+    letter-spacing: -0.022em;
+}
+.regislog-text {
+	font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.011em;
+	padding-bottom: 10px;
+}
+.regislog-input {
+	background: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: block;
+}
+.regislog-button {
+	border-radius: 10px;
+	font-family: Inter;
+	font-style: normal;		
+	line-height: 24px;
+	letter-spacing: -0.011em;
+	color: #FFFFFF;
+}
+.regislog-img {
+	width: 75%;
+	height: 75%;
+}
 .wrapper {
 	width: 100%;
 	position: relative
